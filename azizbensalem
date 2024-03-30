@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #120e7e;
+        }
+        #quiz {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(24, 95, 195, 0.1);
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #8e2a2a;
+            margin-top: 20px;
+        }
+        p {
+            color: #777;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .timer {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz</h1>
+    <div id="quiz">
+        <h2>Histoire et Géographie:</h2>
+        <p>Quelle est la capitale de la France ?</p>
+        <label><input type="radio" name="q1-options" value="paris"> Paris</label>
+        <label><input type="radio" name="q1-options" value="londres"> Londres</label>
+        <label><input type="radio" name="q1-options" value="berlin"> Berlin</label>
+
+       <h2>Art et Culture:</h2>
+        <p>Qui a peint la Joconde ?</p>
+        <label><input type="radio" name="q2-options" value="léonard de vinci"> Léonard de Vinci</label>
+        <label><input type="radio" name="q2-options" value="picasso"> Picasso</label>
+        <label><input type="radio" name="q2-options" value="vangogh"> Van Gogh</label>
+
+       
+        <h2>Sports:</h2>
+        <p>Quel sport est associé à Wimbledon ?</p>
+        <label><input type="radio" name="q3-options" value="tennis"> Tennis</label>
+        <label><input type="radio" name="q3-options" value="football"> Football</label>
+        <label><input type="radio" name="q3-options" value="basketball"> Basketball</label>
+
+       
+        <h2>Sciences et Nature:</h2>
+        <p>Quel gaz compose la majorité de l’atmosphère terrestre ?</p>
+        <label><input type="radio" name="q4-options" value="azote"> Azote</label>
+        <label><input type="radio" name="q4-options" value="oxygene"> Oxygène</label>
+        <label><input type="radio" name="q4-options" value="dioxyde de carbone"> Dioxyde de carbone</label>
+             
+        <h2>Technologie:</h2>
+        <p>Qui est le fondateur de Tesla ?</p>
+        <label><input type="radio" name="q5-options" value="elon musk"> Elon Musk</label>
+        <label><input type="radio" name="q5-options" value="jeff bezos"> Jeff Bezos</label>
+        <label><input type="radio" name="q5-options" value="mark zuckerberg"> Mark Zuckerberg</label>
+        
+       
+        <h2>Langues:</h2>
+        <p>Quelle est la langue officielle de la Chine ?</p>
+        <label><input type="radio" name="q6-options" value="mandarin"> Mandarin</label>
+        <label><input type="radio" name="q6-options" value="anglais"> Anglais</label>
+        <label><input type="radio" name="q6-options" value="espagnol"> Espagnol</label>
+        
+   
+        <h2>Cinéma:</h2>
+        <p>Qui a réalisé le film "Forrest Gump" ?</p>
+        <label><input type="radio" name="q7-options" value="robert zemeckis"> Robert Zemeckis</label>
+        <label><input type="radio" name="q7-options" value="steven spielberg"> Steven Spielberg</label>
+        <label><input type="radio" name="q7-options" value="quentin tarantino"> Quentin Tarantino</label>
+        
+       
+        <h2>Musique:</h2>
+        <p>Quel groupe a chanté la chanson "Bohemian Rhapsody" ?</p>
+        <label><input type="radio" name="q8-options" value="queen"> Queen</label>
+        <label><input type="radio" name="q8-options" value="the beatles"> The Beatles</label>
+        <label><input type="radio" name="q8-options" value="nirvana"> Nirvana</label>
+        
+        
+        <h2>Géographie:</h2>
+        <p>Quel est le plus grand pays du monde par superficie ?</p>
+        <label><input type="radio" name="q9-options" value="russie"> Russie</label>
+        <label><input type="radio" name="q9-options" value="chine"> Chine</label>
+        <label><input type="radio" name="q9-options" value="états-unis"> États-Unis</label>
+        
+      
+        <h2>Mathématiques:</h2>
+        <p>Combien de degrés a un angle droit ?</p>
+        <label><input type="radio" name="q10-options" value="90"> 90 degrés</label>
+        <label><input type="radio" name="q10-options" value="180"> 180 degrés</label>
+        <label><input type="radio" name="q10-options" value="360"> 360 degrés</label> 
+        
+        <!-- Bouton pour soumettre les réponses -->
+        <button onclick="submitQuiz()">Soumettre</button>
+
+        <!-- Bouton pour remettre à zéro les réponses -->
+        <button onclick="resetQuiz()">Recommencer</button>
+        <!-- Chronomètre -->
+        <div class="timer" id="timer">Temps restant: <span id="countdown">60</span> secondes</div>
+    </div>
+    <script>
+        // Tableau pour stocker les réponses correctes
+        const correctAnswers = {
+            "q1-options": "paris",
+        };
+        // Variable pour stocker le score
+        let score = 0;
+        // Variable pour stocker le temps restant
+        let timeLeft = 35; // 35 secondes par défaut
+        // Fonction pour soumettre le quiz
+        function submitQuiz() {
+            // Vérifier chaque question et incrémenter le score si la réponse est correcte
+            for (const question in correctAnswers) {
+                const selectedAnswer = document.querySelector('input[name="' + question + '"]:checked');
+                if (selectedAnswer && selectedAnswer.value === correctAnswers[question]) {
+                    score++;
+                }
+            }
+
+            // Afficher le score
+            alert("Score: " + score + "/10"); // 10 représente le nombre total de questions
+            // Réinitialiser le score
+            score = 0;
+        }
+
+        // Fonction pour réinitialiser le quiz
+        function resetQuiz() {
+            // Décocher toutes les réponses sélectionnées
+            const allOptions = document.querySelectorAll('input[type="radio"]');
+            allOptions.forEach(option => option.checked = false);
+            // Réinitialiser le score
+            score = 0;
+            // Réinitialiser le temps
+            clearInterval(timerInterval);
+            timeLeft = 40;
+            document.getElementById('countdown').textContent = timeLeft;
+        }
+        // Décompte du chronomètre
+        const timerElement = document.getElementById('countdown');
+        const timerInterval = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                alert("Temps écoulé !");
+            }
+        }, 1000);
+        // Fonction pour afficher un conseil
+    </script>
+</body>
+<h1>Voici un conseil utile pour vous aider à améliorer vos résultats!</h1>
+</html>
