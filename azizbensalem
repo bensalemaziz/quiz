@@ -70,6 +70,7 @@
         <label><input type="radio" name="q2-options" value="vangogh"> Van Gogh</label>
 
        
+       
         <h2>Sports:</h2>
         <p>Quel sport est associé à Wimbledon ?</p>
         <label><input type="radio" name="q3-options" value="tennis"> Tennis</label>
@@ -82,7 +83,8 @@
         <label><input type="radio" name="q4-options" value="azote"> Azote</label>
         <label><input type="radio" name="q4-options" value="oxygene"> Oxygène</label>
         <label><input type="radio" name="q4-options" value="dioxyde de carbone"> Dioxyde de carbone</label>
-             
+        
+       
         <h2>Technologie:</h2>
         <p>Qui est le fondateur de Tesla ?</p>
         <label><input type="radio" name="q5-options" value="elon musk"> Elon Musk</label>
@@ -124,23 +126,40 @@
         <label><input type="radio" name="q10-options" value="180"> 180 degrés</label>
         <label><input type="radio" name="q10-options" value="360"> 360 degrés</label> 
         
+
+        <p>La Terre est plate.</p>
+        <label><input type="radio" name="q11-options" value="vrai"> Vrai</label>
+        <label><input type="radio" name="q11-options" value="faux"> Faux</label>
+
+
+        <p>Le soleil tourne autour de la Terre.</p>
+        <label><input type="radio" name="q12-options" value="vrai"> Vrai</label>
+        <label><input type="radio" name="q12-options" value="faux"> Faux</label>
+
+        
         <!-- Bouton pour soumettre les réponses -->
         <button onclick="submitQuiz()">Soumettre</button>
 
         <!-- Bouton pour remettre à zéro les réponses -->
         <button onclick="resetQuiz()">Recommencer</button>
+
         <!-- Chronomètre -->
         <div class="timer" id="timer">Temps restant: <span id="countdown">60</span> secondes</div>
     </div>
+
     <script>
         // Tableau pour stocker les réponses correctes
         const correctAnswers = {
             "q1-options": "paris",
+          
         };
+
         // Variable pour stocker le score
         let score = 0;
+
         // Variable pour stocker le temps restant
         let timeLeft = 35; // 35 secondes par défaut
+
         // Fonction pour soumettre le quiz
         function submitQuiz() {
             // Vérifier chaque question et incrémenter le score si la réponse est correcte
@@ -162,13 +181,16 @@
             // Décocher toutes les réponses sélectionnées
             const allOptions = document.querySelectorAll('input[type="radio"]');
             allOptions.forEach(option => option.checked = false);
+
             // Réinitialiser le score
             score = 0;
+
             // Réinitialiser le temps
             clearInterval(timerInterval);
             timeLeft = 40;
             document.getElementById('countdown').textContent = timeLeft;
         }
+
         // Décompte du chronomètre
         const timerElement = document.getElementById('countdown');
         const timerInterval = setInterval(() => {
@@ -180,6 +202,8 @@
             }
         }, 1000);
         // Fonction pour afficher un conseil
+      
+        
     </script>
 </body>
 <h1>Voici un conseil utile pour vous aider à améliorer vos résultats!</h1>
